@@ -11,14 +11,14 @@ import time
 
 
 class AsunaroWildCard:
-    CATEGORY = "OmemeTools"
+    CATEGORY = "AsuraroTools"
     OUTPUT_NODE = False
 
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "pick_up_num": ("INT", {"default": 1, "min": 0, "max": 100, "step": 1}),
+                "pick_up_num": ("INT", {"default": 1, "min": 0, "step": 1}),
                 "wildcard": ("STRING", {
                     "multiline": True,
                 }),
@@ -49,7 +49,7 @@ class AsunaroWildCard:
         return (result,)
 
 class AsunaroIfSame:
-    CATEGORY = "OmemeTools"
+    CATEGORY = "AsuraroTools"
     OUTPUT_NODE = False
 
     @classmethod
@@ -60,8 +60,8 @@ class AsunaroIfSame:
                 "compare": ("STRING", {
                     "multiline": False,
                 }),
-                "if_true": ("INT", {"default": 1, "min": 0, "max": 100, "step": 1}),
-                "if_false": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                "if_true": ("INT", {"default": 1, "min": 0, "step": 1}),
+                "if_false": ("INT", {"default": 0, "min": 0, "step": 1}),
             }
         }
 
@@ -75,7 +75,7 @@ class AsunaroIfSame:
             return (if_false,)
 
 class AsunaroIfContain:
-    CATEGORY = "OmemeTools"
+    CATEGORY = "AsuraroTools"
     OUTPUT_NODE = False
 
     @classmethod
@@ -86,8 +86,8 @@ class AsunaroIfContain:
                 "needle": ("STRING", {
                     "multiline": False,
                 }),
-                "if_true": ("INT", {"default": 1, "min": 0, "max": 100, "step": 1}),
-                "if_false": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                "if_true": ("INT", {"default": 1, "min": 0, "step": 1}),
+                "if_false": ("INT", {"default": 0, "min": 0, "step": 1}),
             }
         }
 
@@ -101,7 +101,7 @@ class AsunaroIfContain:
             return (if_false,)
 
 class AsunaroIfBiggerThanZero:
-    CATEGORY = "OmemeTools"
+    CATEGORY = "AsuraroTools"
     OUTPUT_NODE = False
 
     @classmethod
@@ -123,15 +123,15 @@ class AsunaroIfBiggerThanZero:
             return ("",)
 
 class AsunaroRandomDice:
-    CATEGORY = "OmemeTools"
+    CATEGORY = "AsuraroTools"
     OUTPUT_NODE = False
 
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "min": ("INT", {"default": 1, "min": 0, "max": 100, "step": 1}),
-                "max": ("INT", {"default": 1, "min": 0, "max": 100, "step": 1}),
+                "min": ("INT", {"default": 1, "min": 0, "step": 1}),
+                "max": ("INT", {"default": 1, "min": 0, "step": 1}),
                 "seed": ("INT:seed", {}),
             }
         }
@@ -139,13 +139,13 @@ class AsunaroRandomDice:
     RETURN_TYPES = ("INT",)
     FUNCTION = "asunaro_random_dice"
 
-    def asunaro_wildcard(self, min, max, seed):
+    def asunaro_random_dice(self, min, max, seed):
         random.seed(seed)
         result = random.randint(min, max)
         return (result,)
 
 class AsunaroAnd:
-    CATEGORY = "OmemeTools"
+    CATEGORY = "AsuraroTools"
     OUTPUT_NODE = False
 
     @classmethod
@@ -154,8 +154,8 @@ class AsunaroAnd:
             "required": {
                 "input1": ("INT",),
                 "input2": ("INT",),
-                "if_true": ("INT", {"default": 1, "min": 0, "max": 100, "step": 1}),
-                "if_false": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                "if_true": ("INT", {"default": 1, "min": 0, "step": 1}),
+                "if_false": ("INT", {"default": 0, "min": 0, "step": 1}),
             }
         }
 
@@ -163,13 +163,13 @@ class AsunaroAnd:
     FUNCTION = "asunaro_and"
 
     def asunaro_and(self, input1, input2, if_true, if_false):
-        if input1 > 0 & input2 > 0:
+        if input1 > 0 and input2 > 0:
             return (if_true,)
         return (if_false,)
 
 
 class AsunaroOr:
-    CATEGORY = "OmemeTools"
+    CATEGORY = "AsuraroTools"
     OUTPUT_NODE = False
 
     @classmethod
@@ -178,8 +178,8 @@ class AsunaroOr:
             "required": {
                 "input1": ("INT",),
                 "input2": ("INT",),
-                "if_true": ("INT", {"default": 1, "min": 0, "max": 100, "step": 1}),
-                "if_false": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                "if_true": ("INT", {"default": 1, "min": 0, "step": 1}),
+                "if_false": ("INT", {"default": 0, "min": 0, "step": 1}),
             }
         }
 
@@ -187,14 +187,14 @@ class AsunaroOr:
     FUNCTION = "asunaro_or"
 
     def asunaro_or(self, input1, input2, if_true, if_false):
-        if input1 > 0 | input2 > 0:
+        if input1 > 0 or input2 > 0:
             return (if_true,)
         return (if_false,)
 
 
 
-class SaveWithAsunaroInfo:
-    CATEGORY = "OmemeTools"
+class AsunaroSave:
+    CATEGORY = "AsuraroTools"
     OUTPUT_NODE = True
 
     @classmethod
@@ -243,71 +243,50 @@ class SaveWithAsunaroInfo:
 
         return ()
 
-
-
-
-class ImageMetaDataLoader:
-    CATEGORY = "OmemeTools"
+class AsunaroIntToStr:
+    CATEGORY = "AsuraroTools"
     OUTPUT_NODE = False
-
-    @classmethod
-    def list_images(cls):
-        input_dir = folder_paths.get_input_directory()
-        valid_extensions = (".png", ".jpg", ".jpeg", ".webp")
-        files = [f for f in os.listdir(input_dir) if f.lower().endswith(valid_extensions)]
-        return files if files else ["no_images_found.png"]
 
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "image_filename": (cls.list_images(),),
+                "int": ("INT", {"default": 1, "min": 0, "step": 1}),
             }
         }
 
-    RETURN_TYPES = ("STRING", "STRING")
-    RETURN_NAMES = ("positive_prompt", "negative_prompt")
-    FUNCTION = "load_metadata_from_image"
+    RETURN_TYPES = ("STRING",)
+    FUNCTION = "asunaro_int_to_str"
 
-    def load_metadata_from_image(self, image_filename):
-        input_dir = folder_paths.get_input_directory()
-        full_path = os.path.join(input_dir, image_filename)
+    def asunaro_int_to_str(self, int):
+        return (str(int),)
 
-        if not os.path.isfile(full_path):
-            print(f"File not found: {full_path}")
-            return ("", "")
 
-        img = Image.open(full_path)
-        metadata = img.info
-
-        positive_prompt = metadata.get("asunaro_positive_prompt", "")
-        negative_prompt = metadata.get("asunaro_negative_prompt", "")
-
-        print(f"Positive Prompt: {positive_prompt}")
-        print(f"Negative Prompt: {negative_prompt}")
-
-        return (positive_prompt, negative_prompt)
 
 # A dictionary that contains all nodes you want to export with their names
 # NOTE: names should be globally unique
 NODE_CLASS_MAPPINGS = {
-    "SaveWithAsunaroInfo": SaveWithAsunaroInfo,
-    "ImageMetaDataLoader": ImageMetaDataLoader,
+    "AsunaroSave": AsunaroSave,
     "AsunaroWildCard": AsunaroWildCard,
     "AsunaroIfSame": AsunaroIfSame,
     "AsunaroIfContain": AsunaroIfContain,
     "AsunaroIfBiggerThanZero": AsunaroIfBiggerThanZero,
     "AsunaroRandomDice": AsunaroRandomDice,
+    "AsunaroAnd": AsunaroAnd,
+    "AsunaroOr": AsunaroOr,
+    "AsunaroIntToStr": AsunaroIntToStr,
 }
 
 # A dictionary that contains the friendly/humanly readable titles for the nodes
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "SaveWithAsunaroInfo": "Save with asunaro information",
-    "ImageMetaDataLoader": "ImageMetaDataLoader",
+    "AsunaroSave": "Save with simple information",
     "AsunaroWildCard": "AsunaroWildCard",
     "AsunaroIfSame": "AsunaroIfSame",
     "AsunaroIfContain": "AsunaroIfContain",
     "AsunaroIfBiggerThanZero": "AsunaroIfBiggerThanZero",
     "AsunaroRandomDice": "AsunaroRandomDice",
+    "AsunaroAnd": "AsunaroAnd",
+    "AsunaroOr": "AsunaroOr",
+    "AsunaroIntToStr": "AsunaroIntToStr",
 
 }
