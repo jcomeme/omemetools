@@ -3,7 +3,7 @@
 """Tests for `omemetools` package."""
 
 import pytest
-from src.omemetools.nodes import Example
+from src.AsunaroTools.nodes import Example
 
 @pytest.fixture
 def example_node():
